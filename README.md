@@ -14,8 +14,8 @@ Execute `generateTestSuiteXml` test in [TestRunner](https://github.com/zarashima
 Followed this sample project, you will have an approach to resolve your issue with including the dynamic desired capabilites generated from [MobileDeviceInfo](https://github.com/Testinium/MobileDeviceInfo) to be usable in TestSuite file with the help of [FreeMaker](https://freemarker.apache.org/)
 
 ## Roadmap
-- [ ]Generalize this solution, maybe a maven plugin
-- [ ]Add solutions for cloud service providers, such as SauceLabs, BrowserStacks, pCloudy
+- [ ] Generalize this solution, maybe a maven plugin
+- [ ] Add solutions for cloud service providers, such as SauceLabs, BrowserStacks, pCloudy
 
 ## Acknowledgement
 * [Truth](https://truth.dev/)
