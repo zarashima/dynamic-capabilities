@@ -18,5 +18,6 @@ Followed this sample project, you will have an approach to resolve your issue wi
 - [ ]Add solutions for cloud service providers, such as SauceLabs, BrowserStacks, pCloudy
 
 ## Acknowledgement
+* [Truth](https://truth.dev/)
 * [FreeMaker](https://freemarker.apache.org/)
-* [MobileDeviceInfo](https://github.com/Testinium/MobileDeviceInfo)
+* [MobileDeviceInfo](https://github.com/Testinium/MobileDeviceInfo/)
