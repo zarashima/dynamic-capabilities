@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="PKI Sanity Tests" parallel="tests" verbose="10" thread-count="${threadCount}">
+<suite name="Sample Test Suite" parallel="tests" verbose="10" thread-count="${threadCount}">
     <#list devicesInformation as device>
         <test name="Tests on ${device.deviceName}" preserve-order="true">
             <parameter name="platformName" value="${device.platformName}"/>
