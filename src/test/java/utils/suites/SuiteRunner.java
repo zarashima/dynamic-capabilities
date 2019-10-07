@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SuiteRunner {
-    TestNG runner = new TestNG();
-    List<String> suiteFiles=new ArrayList<String>();
+    private final TestNG runner = new TestNG();
+    private final List<String> suiteFiles=new ArrayList<String>();
 
     public void runSuite(String suiteFilePath) {
         suiteFiles.add(suiteFilePath);
