@@ -2,7 +2,7 @@
 To ultilize TestNG [parameters](https://testng.org/doc/documentation-main.html#parameters) in TestNG Test Suite file (.xml) for parallel executions without wasting efforts to handle desired capabilities initializations.
 
 ## How does it work
-Upon [TestRunner](https://github.com/zarashima/dynamic-capabilities/blob/master/src/test/java/TestRunner.java) execution:
+Upon [TestRunner](https://github.com/zarashima/dynamic-capabilities/blob/master/src/test/java/runner/TestRunner.java) execution:
 * Dynamic desired capabilities are retrieved using [MobileDeviceInfo](https://github.com/Testinium/MobileDeviceInfo). Applicable for both Android and iOS
 * TestNG suite file (.xml) is generated based on the [FreeMaker template](https://github.com/zarashima/dynamic-capabilities/blob/master/suites/template.ftl) through [TestRunner](https://github.com/zarashima/dynamic-capabilities/blob/77e4e8e334e9f38bae40ea4aa599f16e70b4d1b4/src/test/java/TestRunner.java#L27). This template file includes necessary desired capabilities (platformName, systemPort, deviceId, deviceVersion, deviceName) placeholder which are passed from the above step
 * TestRunner will execute generated .xml file using its native TestNG runner. This suite is contrusted from the [sample test](https://github.com/zarashima/dynamic-capabilities/blob/master/src/test/java/sample/SampleTest.java)
