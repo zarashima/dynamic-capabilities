@@ -22,7 +22,7 @@ public class SuiteModule extends AbstractModule {
     @Singleton
     @Provides
     public Suite provideSuite() {
-        return Suite.getSuite()
+        return Suite.getSuite("Template","./suites/template.xml");
     }
 
 }

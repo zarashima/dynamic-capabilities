@@ -25,21 +25,13 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class TestRunner {
 
-    @Inject
-    private SuiteGeneration suiteGeneration;
-
-    @Inject
-    private Suite suite;
-
-    @Inject
-    private Runner runner;
-
-    @Inject
-    private Map<String,Object> templateData;
+    @Inject private SuiteGeneration suiteGeneration;
+    @Inject private Suite suite;
+    @Inject private Runner runner;
+    @Inject private Map<String,Object> templateData;
 
     @Test(description = "Wrap up test to execute template test suite with dynamic desired capabilities")
     public void generateTestSuiteXml() throws IOException, TemplateException, DeviceNotFoundException {
-        runner = new Runner();
         TemplateProcessor templateProcessor = new TemplateProcessor(new File(String.format("%s/%s",System.getProperty("user.dir"),"suites/")));
         templateProcessor.setUp();
         Template template = templateProcessor.getTemplate("template.ftl");
@@ -59,10 +51,9 @@ public class TestRunner {
         }
         templateData.put("threadCount", deviceInfo.getDevices().size());
         templateData.put("devicesInformation", devicesInformation);
-        suite = Suite.getSuite("Template","./suites/template.xml");
         suiteGeneration = new SuiteGeneration(suite);
         suiteGeneration.applyTemplate(suiteTemplate);
-        runner.runSuite("./template.xml");
+        runner.runSuite(".suites/template.xml");
     }
 }
 
