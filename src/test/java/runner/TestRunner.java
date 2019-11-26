@@ -1,5 +1,6 @@
 package runner;
 
+import com.google.inject.Inject;
 import com.testinium.deviceinformation.DeviceInfo;
 import com.testinium.deviceinformation.DeviceInfoImpl;
 import com.testinium.deviceinformation.device.DeviceType;
@@ -7,33 +8,44 @@ import com.testinium.deviceinformation.exception.DeviceNotFoundException;
 import com.testinium.deviceinformation.model.Device;
 import devices.DeviceInformation;
 import freemarker.template.*;
+import org.testng.annotations.Guice;
 import org.testng.annotations.Test;
-import utils.suites.SuiteGeneration;
-import utils.suites.SuiteRunner;
-import utils.suites.TemplateProcessor;
+import utils.suites.*;
 
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ThreadLocalRandom;
 
+@Guice(modules = {
+        SuiteModule.class
+})
+
+
 public class TestRunner {
+
+    @Inject
+    private SuiteGeneration suiteGeneration;
+
+    @Inject
+    private Suite suite;
+
+    @Inject
+    private Runner runner;
+
+    @Inject
+    private Map<String,Object> templateData;
+
     @Test(description = "Wrap up test to execute template test suite with dynamic desired capabilities")
     public void generateTestSuiteXml() throws IOException, TemplateException, DeviceNotFoundException {
-        SuiteGeneration suiteGeneration = new SuiteGeneration();
-        SuiteRunner suiteRunner = new SuiteRunner();
+        runner = new Runner();
         TemplateProcessor templateProcessor = new TemplateProcessor(new File(String.format("%s/%s",System.getProperty("user.dir"),"suites/")));
         templateProcessor.setUp();
         Template template = templateProcessor.getTemplate("template.ftl");
-        Map<String, Object> templateData = new HashMap<String, Object>();
-        DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
+        SuiteTemplate suiteTemplate = new SuiteTemplate(template, templateData);
+        DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ANDROID);
         List<DeviceInformation> devicesInformation = new ArrayList<>();
-        /**
-         * Add local devices and assign random systemPort capabilities
-         * Random systemPort is required to achieve parallel executions
-         */
         String randomSystemPort;
         if (deviceInfo.anyDeviceConnected()) {
             int inBoundSystemPort = 8200;
@@ -47,8 +59,10 @@ public class TestRunner {
         }
         templateData.put("threadCount", deviceInfo.getDevices().size());
         templateData.put("devicesInformation", devicesInformation);
-        suiteGeneration.applyTemplateToSuite("./template.xml",template,templateData);
-        suiteRunner.runSuite("./template.xml");
+        suite = Suite.getSuite("Template","./suites/template.xml");
+        suiteGeneration = new SuiteGeneration(suite);
+        suiteGeneration.applyTemplate(suiteTemplate);
+        runner.runSuite("./template.xml");
     }
 }
 
