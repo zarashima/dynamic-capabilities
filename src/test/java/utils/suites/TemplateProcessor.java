@@ -8,7 +8,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class TemplateProcessor {
-    protected final Configuration cfg = new Configuration(Configuration.VERSION_2_3_28);
+    private final Configuration cfg = new Configuration(Configuration.VERSION_2_3_28);
     private final File templateDirectory;
 
     public TemplateProcessor(File templateDirectory) {
