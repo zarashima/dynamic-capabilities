@@ -36,7 +36,7 @@ public class TestRunner {
         templateProcessor.setUp();
         Template template = templateProcessor.getTemplate("template.ftl");
         SuiteTemplate suiteTemplate = new SuiteTemplate(template, templateData);
-        DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ANDROID);
+        DeviceInfo deviceInfo = new DeviceInfoImpl(DeviceType.ALL);
         List<DeviceInformation> devicesInformation = new ArrayList<>();
         String randomSystemPort;
         if (deviceInfo.anyDeviceConnected()) {
