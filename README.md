@@ -1,5 +1,5 @@
 ## About
-To ultilize TestNG [parameters](https://testng.org/doc/documentation-main.html#parameters) in TestNG Test Suite file (.xml) for parallel executions without wasting efforts to handle desired capabilities initializations.
+To ultilize TestNG [parameters](https://testng.org/doc/documentation-main.html#parameters) in TestNG Test Suite file (.xml) for parallel executions without wasting efforts to handle desired capabilities initializations. See its actual usage in this [repository](https://github.com/zarashima/dynamic-capabilities)
 
 ## How does it work
 Upon [TestRunner](https://github.com/zarashima/dynamic-capabilities/blob/master/src/test/java/runner/TestRunner.java) execution:
